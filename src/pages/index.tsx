@@ -1,24 +1,52 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Link from "next/link"
 
-const inter = Inter({ subsets: ['latin'] })
+export default function Champions({ championsData }: any) {
 
-export default function Home() {
+
+  let champions = championsData.data;
+
+  let keysChamps = Object.keys(champions);
+
+  let arrayChampions = []; 
+
+
+  for (let clave in champions){
+    arrayChampions.push(champions[clave]);
+  }
+
+  // console.log(arrayChampions.map((champ) => champ.id));
+
   return (
-    <>
-      <Head>
-        <title>Legends Never Die</title>
-        <meta name="description" content="LOL Champions" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
-      </main>
-    </>
+    
+    <ul>
+      {keysChamps.map((keysChamp) => (
+        <li key={champions[`${keysChamp}`].id} className="odd:bg-white even:bg-slate-50">
+          <Link href='/[id]' as={`/${champions[`${keysChamp}`].id}`}>
+            {champions[`${keysChamp}`].id}
+          </Link>
+        </li>
+      ))}
+    </ul>
   )
+}
+ 
+// This function gets called at build time on server-side.
+// It won't be called on client-side, so you can even do
+// direct database queries.
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch('http://ddragon.leagueoflegends.com/cdn/13.12.1/data/en_US/champion.json');
+  
+  const championsData = await res.json();
+  
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      championsData,
+      // post,
+    },
+  }
 }
