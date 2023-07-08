@@ -1,3 +1,6 @@
+import { Banner } from "@/components/Banner";
+import LegendCard from "@/components/LegendCard";
+import bgImage from "../assets/img/lol-bg.png";
 import Link from "next/link"
 
 interface Props {
@@ -88,17 +91,22 @@ export default function Champions({ championsData }: Props) {
   // console.log(arrayChampions.map((champ) => champ.id));
 
   return (
-    <div className="container mx-auto px-4">
-      <div className="xl:columns-4 md:columns-2 xs:columns-1">
+    <>
+    <Banner backgroundImage={`${bgImage.src}`} height="500px" />
+    <div className="container mx-auto px-4 py-14">
+      <div className="grid xl:grid-cols-4 md:grid-cols-2 xs:grid-cols-1 gap-4">
         {keysChamps.map((keysChamp) => (
-          <div key={champions[`${keysChamp}`].id} className="odd:bg-white even:bg-slate-50">
-            <Link href='/[id]' as={`/${champions[`${keysChamp}`].id}`}>
-              {champions[`${keysChamp}`].id}
-            </Link>
-          </div>
+          <LegendCard 
+            key={`${champions[`${keysChamp}`].id}`} 
+            id={`${champions[`${keysChamp}`].id}`} 
+            name={`${champions[`${keysChamp}`].id}`} 
+            title={`${champions[`${keysChamp}`].title}`}
+            champType={`${champions[`${keysChamp}`].tags}`}
+          />
         ))}
       </div>
     </div>
+    </>
   )
 }
  

@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.legend_card {
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.legend_card-container {
+  height: 560px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  background: round;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+h4 {
+  
+}
+
