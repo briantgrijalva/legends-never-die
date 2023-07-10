@@ -92,7 +92,7 @@ export default function Champions({ championsData }: Props) {
 
   return (
     <>
-    <Banner backgroundImage={`${bgImage.src}`} height="500px" />
+    <Banner backgroundImage={`${bgImage.src}`} height="500px" overlay={true}/>
     <div className="container mx-auto px-4 py-14">
       <div className="grid xl:grid-cols-4 md:grid-cols-2 xs:grid-cols-1 gap-4">
         {keysChamps.map((keysChamp) => (
