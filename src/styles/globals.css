@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 main, nav {
   font-family: var(--custom-font) !important;
 }

@@ -22,8 +22,8 @@ module.exports = {
       'orange': '#ff7849',
       'green': '#13ce66',
       'yellow': '#ffc82c',
-      'gray-dark': '#1C2431',
-      'gray': '#2D3A50',
+      'gray-dark': '#222831',
+      'gray': '#393E46',
       'gray-light': '#E0E5EE',
     },
     fontFamily: {

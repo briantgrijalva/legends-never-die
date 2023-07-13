@@ -110,6 +110,11 @@ export default function Champ({ championData }: Data) {
 
   const slider1 = useRef();
   const slider2 = useRef();
+
+  function removeHtmlTags(text: string) {
+    let cleanText = text.replace(/<[^>]*>/g, '');
+    return cleanText;
+  }
   
   
   return (
@@ -123,7 +128,8 @@ export default function Champ({ championData }: Data) {
         speed={500}
         slidesToShow={1}
         slidesToScroll={1}
-        autoplay={true} 
+        autoplay={true}
+        className="legend_card"
       >
         {skins.map((skin) => (
           <div key={skin.id}>
@@ -137,39 +143,42 @@ export default function Champ({ championData }: Data) {
           </div>
         ))}
     </Slider>
-    <div className="flex justify-center text-center">
+    <div className="flex justify-center text-center my-5">
       <div style={{maxWidth: '100%'}}>
-        <h1 style={{fontStyle: 'italic'}}>
+        <div className="grid xl:grid-cols-2 md:grid-cols-2 xs:grid-cols-1 gap-4">
+          <div className="legend_card">
+          <h1 style={{fontStyle: 'italic'}} className="mt-5">
           {championData.name}
         </h1>
-        <h4>
+        <h4 className="mt-3">
           {championData.title}
         </h4>
-        <div className="flex justify-center text-center">{championData.tags.map((tag => (<Image src={`/icons/${tag}.png`} width={32} height={32} alt={tag} key={tag}/>)))}</div>
-        <div className="flex justify-center text-center">
+        <div className="flex justify-center text-center mt-3">{championData.tags.map((tag => (<Image src={`/icons/${tag}.png`} width={32} height={32} alt={tag} key={tag}/>)))}</div>
+          </div>
+        <div className="text-left legend_card">
           <div style={{maxWidth: '100%'}}>
           <div style={{maxWidth: '100vh'}}>
             <Slider asNavFor={nav2} ref={(slider1) => setNav1(slider1)} fade={true} arrows={false}>
               <div style={{maxWidth: '100%'}}>
-                <h3>
+                <h3 className="my-4">
                   {championData.passive.name}
                 </h3>
-                <p>
-                  {championData.passive.description}
+                <p className="mb-4">
+                  {removeHtmlTags(championData.passive.description)}
                 </p>
               </div>
               {championData.spells.map((spell => (
               <div key={spell.id}>
-                <h3>
+                <h3 className="my-4">
                   {spell.name}
                 </h3>
-                <p>
+                <p className="mb-4">
                   {spell.description}
                 </p>
               </div>
               )))}
             </Slider>
-            <div style={{width: '270px', margin: 'auto'}}>
+            <div style={{width: '270px'}}>
               <Slider
                 asNavFor={nav1}
                 ref={(slider2) => setNav2(slider2)}
@@ -186,8 +195,10 @@ export default function Champ({ championData }: Data) {
           </div>
           </div>
         </div>
-        <div className="flex justify-center text-center">
-          <div style={{maxWidth: '100%'}}>
+        </div>
+        
+        <div className="flex justify-center text-center mt-20">
+          <div style={{maxWidth: '100%'}} className="legend_card">
             <h3>
               Lore
             </h3>
