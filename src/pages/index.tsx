@@ -134,9 +134,6 @@ export default function Champions({ championsData }: Props) {
     handleInputChange(event);
   };
 
-  console.log(currentChampions);
-
-  // console.log(values);
   
 
   return (
