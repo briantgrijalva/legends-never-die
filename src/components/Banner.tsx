@@ -14,7 +14,7 @@ interface Props {
 export const Banner = ({height, backgroundImage, bannerText, overlay = true, backgroundPosition = 'center', backgroundSize = 'cover', activeClass = false, overwriteByColor = false}: Props) => {
   
   let backgroundOverlay = overlay ? `linear-gradient(to bottom, rgba(28, 36, 49, 0.7), rgba(28, 36, 49, 0.7)), url(${backgroundImage})` :
-   `linear-gradient(to right, #222831 12.9%, rgba(28, 36, 49, 0) 51.9%), linear-gradient(to left, #222831 12.9%, rgba(28, 36, 49, 0) 51.9%), url(${backgroundImage})`;
+   `linear-gradient(to right, #222831 5.9%, rgba(28, 36, 49, 0) 21.9%), linear-gradient(to left, #222831 5.9%, rgba(28, 36, 49, 0) 21.9%), url(${backgroundImage})`;
   
   return (
     <div
