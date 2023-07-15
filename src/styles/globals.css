@@ -151,12 +151,12 @@ p {
   padding: 12px;
 }
 
-a {
+.a-name {
   padding: 8px 4px;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
 }
 
-a:hover {
+.a-name:hover {
   padding: 8px 8px;
   border-radius: 4px;
   color: #087ea4;
