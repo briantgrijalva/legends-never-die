@@ -145,7 +145,7 @@ export default function Champ({ championData }: Data) {
     </Slider>
     <div className="flex justify-center text-center">
       <div style={{maxWidth: '100%'}}>
-        <div className="grid xl:grid-cols-2 md:grid-cols-2 xs:grid-cols-1 gap-4 mt-20">
+        <div className="grid xl:grid-cols-2 md:grid-cols-2 xs:grid-cols-1 gap-4 mt-20 custom-block">
           <div className="legend_card">
           <h1 style={{fontStyle: 'italic'}} className="mt-5">
           {championData.name}

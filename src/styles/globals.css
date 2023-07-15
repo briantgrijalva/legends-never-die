@@ -9,6 +9,7 @@ main, nav {
 
 .legend_card {
   display: flex;
+  flex-direction: column;
   padding: 20px;
   border-radius: 16px;
 	box-shadow:
@@ -150,10 +151,44 @@ p {
   padding: 12px;
 }
 
+a {
+  padding: 8px 4px;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
+}
+
+a:hover {
+  padding: 8px 8px;
+  border-radius: 4px;
+  color: #087ea4;
+  background-color: #defffa;
+}
+
 @media screen and (max-width: 620px) {
   .searchBox:hover > .searchInput {
     width: 150px;
     padding: 0 6px;
+  }
+
+  .selectTag {
+    width: 36%;
+  }
+}
+
+@media screen and (max-width: 368px) {
+  .legend_card-container {
+    width: 100%;
+    background: unset;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-block {
+    display: block !important;
+  }
+
+  .mobile_banner {
+    height: 400px !important;
+    background-size: cover !important;
   }
 }
 

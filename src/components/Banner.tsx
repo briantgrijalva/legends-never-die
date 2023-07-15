@@ -28,7 +28,7 @@ export const Banner = ({height, backgroundImage, bannerText, overlay = true, bac
         alignItems: 'center',
         justifyContent: 'center',
       }}
-      className={activeClass==true ? 'legend_card' : ''}
+      className={'mobile_banner ' + (activeClass==true ? 'legend_card' : '')}
     >
        {bannerText && (<h1 style={{textAlign: 'center'}}>{bannerText}</h1> )}
     </div>
