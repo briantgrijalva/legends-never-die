@@ -8,12 +8,25 @@ main, nav {
 }
 
 .legend_card {
+  display: flex;
   padding: 20px;
   border-radius: 16px;
 	box-shadow:
   0px 8px 10px 1px hsla(0,0%,0%,0.14), 
   0px 3px 14px 2px hsla(0,0%,0%,0.12), 
   0px 5px 5px -3px hsla(0,0%,0%,0.2);
+}
+
+.legend_card:hover {
+  background: -moz-linear-gradient(-45deg, #222831 15%, #393E46 100%);
+  background: -webkit-linear-gradient(-45deg, #222831 15%,#393E46 100%);
+  background: linear-gradient(135deg, #222831 15%,#393E46 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222831', endColorstr='#393E46',GradientType=1 );
+  transition: 0.9s;
+  box-shadow:
+  0px 8px 10px 1px hsla(219, 29%, 91%, 0.14), 
+  0px 3px 14px 2px hsla(219,29%,91%,0.12), 
+  0px 5px 5px -3px hsla(219,29%,91%,0.2);
 }
 
 .legend_card-container {
@@ -26,6 +39,9 @@ main, nav {
   display: flex;
   flex-direction: column;
   justify-content: end;
+  width: 308px;
+  margin: auto;
+  transition: 0.9s;
 }
 
 h1 {
@@ -74,3 +90,70 @@ p {
   border: 1px solid #E0E5EE;
   filter: brightness(1);
 }
+
+.searchBox {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:  translate(-50%,50%); */
+  background: #2f3640;
+  height: 40px;
+  border-radius: 40px;
+  /* padding: 10px; */
+}
+
+.searchBox:hover {
+  width: 60%;
+}
+
+.searchBox:hover > .searchInput {
+  width: 240px;
+  padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+  background: white;
+  color : #2f3640;
+}
+
+.searchButton {
+  color: white;
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2f3640;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+.searchInput {
+  border:none;
+  background: none;
+  outline:none;
+  float:left;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0px;
+}
+
+.selectTag {
+  color: white;
+  border-radius: 32px;
+  width: 20%;
+  background: #2f3640;
+  padding: 12px;
+}
+
+@media screen and (max-width: 620px) {
+  .searchBox:hover > .searchInput {
+    width: 150px;
+    padding: 0 6px;
+  }
+}
+

@@ -1,6 +1,7 @@
+"use client";
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface Props {
   title: string;
@@ -10,11 +11,31 @@ interface Props {
 }
 
 export const LegendCard = ({ id, champType, name, title }: Props) => {
+
+  const [isHover, setIsHover] = useState(false);
+
+   const handleMouseEnter = () => {
+      setIsHover(true);
+   };
+   const handleMouseLeave = () => {
+      setIsHover(false);
+   };
   
   return (
     <Link href='/[id]' as={`/${id}`}>
-    <div key={id} className="bg-gray legend_card">
-      <div className='legend_card-container' style={{backgroundImage: `url(http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${id}_0.jpg)`}}>
+    <div 
+      key={id} 
+      className="bg-gray legend_card"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        className='legend_card-container'
+        style={{
+          transition: '0.9s',
+          backgroundImage: isHover ? `linear-gradient(135deg, #222831 15%, #393E4600 40%, #393E4600 40%, #393E46 85%, #393E46 100% ), url(http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${id}_0.jpg)` : `url(http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${id}_0.jpg)`
+        }}
+      >
         <h3 style={{paddingLeft: '10px', fontStyle: 'italic', paddingBottom: '20px'}}>
           {name}
         </h3>

@@ -118,7 +118,7 @@ export default function Champ({ championData }: Data) {
   
   
   return (
-    <div className="container mx-auto px-4 py-14">
+    <div className="container mx-auto px-4 py-20">
       
       <Slider
         dots={false}
@@ -143,9 +143,9 @@ export default function Champ({ championData }: Data) {
           </div>
         ))}
     </Slider>
-    <div className="flex justify-center text-center my-5">
+    <div className="flex justify-center text-center">
       <div style={{maxWidth: '100%'}}>
-        <div className="grid xl:grid-cols-2 md:grid-cols-2 xs:grid-cols-1 gap-4">
+        <div className="grid xl:grid-cols-2 md:grid-cols-2 xs:grid-cols-1 gap-4 mt-20">
           <div className="legend_card">
           <h1 style={{fontStyle: 'italic'}} className="mt-5">
           {championData.name}
@@ -203,13 +203,13 @@ export default function Champ({ championData }: Data) {
               Lore
             </h3>
             <p>
-              {championData.lore}
+              {removeHtmlTags(championData.lore)}
             </p>
           </div>
         </div>
       </div>
     </div>
-    </div>
+  </div>
   );
 }
 

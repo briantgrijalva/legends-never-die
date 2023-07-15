@@ -1,7 +1,10 @@
+"use client"
 import { Banner } from "@/components/Banner";
 import LegendCard from "@/components/LegendCard";
 import bgImage from "../assets/img/lol-bg.png";
 import Link from "next/link"
+import { useEffect, useRef, useState } from 'react';
+import { useForm } from "@/hooks/useForm";
 
 interface Props {
   championsData: Champion;
@@ -76,32 +79,108 @@ export enum Version {
 
 export default function Champions({ championsData }: Props) {
 
+  const [currentChampions, setCurrentChampions] = useState<Data[]>([]);
+  
+  const filteredChampions = useRef<Data[]>([]);
+
+  const [values, handleInputChange, reset] = useForm({
+    tag: '',
+    searchText: ''
+  });
+
+  const { tag, searchText } = values;
 
   let champions = championsData.data;
 
-  let keysChamps = Object.keys(champions);
-
-  let arrayChampions = []; 
-
+  let arrayChampions:any = []; 
 
   for (let clave in champions){
     arrayChampions.push(champions[clave]);
   }
 
-  // console.log(arrayChampions.map((champ) => champ.id));
+  useEffect(() => {
+    setCurrentChampions(arrayChampions);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) 
+  
+  
+  useEffect(() => {
+    
+    if (tag !== '') {
+      filteredChampions.current = currentChampions.filter((c) => c.tags.find(e => e === tag));
+      setCurrentChampions(currentChampions.filter((c) => c.tags.find(e => e === tag)));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tag])
+
+
+  const options = [
+    { value: 'Fighter', label: 'Fighter' },
+    { value: 'Assassin', label: 'Assassin' },
+    { value: 'Mage', label: 'Mage' },
+    { value: 'Marksman', label: 'Marksman' },
+    { value: 'Support', label: 'Support' },
+    { value: 'Tank', label: 'Tank' }
+  ];
+
+
+  const handleSelectChange= (event: React.ChangeEvent<HTMLInputElement> ) => {
+    setCurrentChampions(arrayChampions);
+    handleInputChange(event);
+  };
+
+  const searchChange = (event: React.ChangeEvent<HTMLInputElement> ) => {
+    setCurrentChampions(arrayChampions);
+    handleInputChange(event);
+  };
+
+  console.log(currentChampions);
+
+  // console.log(values);
+  
 
   return (
     <>
-    <Banner backgroundImage={`${bgImage.src}`} height="500px" overlay={true}/>
+    <Banner backgroundImage={`${bgImage.src}`} height="300px" overlay={true} overwriteByColor bannerText="Legends Never Die" />
     <div className="container mx-auto px-4 py-14">
+      <div className="flex mb-8">
+        <div className="searchBox me-4">
+          <input className="searchInput" type="text" onChange={handleInputChange} name="searchText" value={searchText} placeholder="Search" />
+          <button className="searchButton">
+              <i className="material-icons">
+                  search
+              </i>
+          </button>
+        </div>
+        {/* <input type="search" onChange={handleInputChange} name="searchText" value={searchText}/> */}
+        <select name="tag" value={tag} onChange={ (e: any) => handleSelectChange(e) } className="selectTag">
+          <option value="">Select Tag</option>
+          {options.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="grid xl:grid-cols-4 md:grid-cols-2 xs:grid-cols-1 gap-4">
-        {keysChamps.map((keysChamp) => (
+        { searchText === ''
+          ?
+        currentChampions.map((currentChampions: Data) => (
           <LegendCard 
-            key={`${champions[`${keysChamp}`].id}`} 
-            id={`${champions[`${keysChamp}`].id}`} 
-            name={`${champions[`${keysChamp}`].id}`} 
-            title={`${champions[`${keysChamp}`].title}`}
-            champType={`${champions[`${keysChamp}`].tags}`}
+            key={`${currentChampions.id}`} 
+            id={`${currentChampions.id}`} 
+            name={`${currentChampions.id}`} 
+            title={`${currentChampions.title}`}
+            champType={`${currentChampions.tags}`}
+          />
+        ))
+        : currentChampions.filter((s: Data) => s.name.toLowerCase().includes(  searchText ? searchText.toLowerCase() : '')).map((currentChampions: Data) => (
+          <LegendCard 
+            key={`${currentChampions.id}`} 
+            id={`${currentChampions.id}`} 
+            name={`${currentChampions.id}`} 
+            title={`${currentChampions.title}`}
+            champType={`${currentChampions.tags}`}
           />
         ))}
       </div>
