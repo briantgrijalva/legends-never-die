@@ -173,7 +173,7 @@ export default function Champ({ championData }: Data) {
                   {spell.name}
                 </h3>
                 <p className="mb-4">
-                  {spell.description}
+                  {removeHtmlTags(spell.description)}
                 </p>
               </div>
               )))}
